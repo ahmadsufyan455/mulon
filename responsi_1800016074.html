@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsi Multimedia Online</title>
+</head>
+
+<body>
+
+    <h1>Simulasi gerhana matahari</h1>
+
+    <canvas id="processing-canvas"> </canvas>
+
+    <script src="https://github.com/downloads/processing-js/processing-js/processing-1.4.1.min.js"></script>
+    <script type="text/processing" data-processing-target="processing-canvas">
+        int i = 0;
+        void setup() {
+            size(300, 300, WEBGL);
+
+            background(0);
+            noStroke();
+        }
+
+        void draw() {
+            background(0);
+            pointLight(255, 255, 255, 100, -60, 0);
+
+            //Sun
+            pushMatrix();
+            translate(100, -150, -500);
+            fill(255,245,0, 150);
+            sphere(100);
+            popMatrix();
+
+            //Moon
+            pushMatrix();
+            translate(i, 120, 0);
+            fill(255);
+            sphere(10);
+
+            // move moon on X axis
+            i < width ? i++ : i=0
+
+            //Shadow on Earth
+            translate(0, 60, 0);
+            fill(0);
+            sphere(10);
+            ellipse(156, 46, 55, 55);
+
+            //Earth
+            popMatrix();
+            fill(0, 102, 204);
+            translate(100, 270, 0);
+            sphere(90);
+        }
+    </script>
+
+</body>
+
+</html>
